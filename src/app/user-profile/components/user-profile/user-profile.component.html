@@ -1,0 +1,73 @@
+<div class="profile-page" *ngIf="userProfile$ | async as userProfile">
+    <div class="user-info">
+        <div class="container-fluid">
+            <div class="row">
+                
+        <div class="banner mb-3">
+            <div class="container-fluid profile">
+                <h1>{{userProfile.username}}</h1>
+                    <img class="user-img" [src]="userProfile.image" />
+                <div class="info">
+                    {{userProfile.bio}}
+                </div>
+            </div>
+        </div>
+                <!-- <div class="col-xs-12 col-md-10 offset-md-1 profile">
+                    <img 
+                        [src]="userProfile.image"
+                        alt="Image of profile" 
+                        class="user-img"
+                    >
+                    <div>
+                        <h4>{{userProfile.username}}</h4>
+                        <p>{{userProfile.bio}}</p>
+                        <div *ngIf="(currentUser$ | async) as currentUser">
+                            <app-follow-user 
+                                [isFollowed]=userProfile.following
+                                [isSameUser]="userProfile.username === currentUser.username"
+                                [username]=userProfile.username></app-follow-user>
+                            <a 
+                                *ngIf="currentUser.username === userProfile.username"
+                                class="btn btn-sm btn-outline-secondary action-btn"
+                                [routerLink]="['/settings']"
+                            >
+                                Edit profile settings
+                            </a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 offset-md-1">
+                <div class="articles-toggle">
+                    <ul class="nav nav-tabs outline-active">
+                        <li class="nav-item">
+                            <a 
+                                [routerLink]="['/profiles', userProfile.username]" 
+                                class="nav-link"
+                                routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact:true}"
+                            >
+                                My posts
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a 
+                                [routerLink]="['/profiles', userProfile.username, 'favorites']" 
+                                class="nav-link"
+                                routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact:true}"
+                            >
+                                Favorites posts
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <app-feed [apiUrl]="getApiUrl()"></app-feed>
+            </div>
+        </div>
+    </div>
+</div>

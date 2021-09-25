@@ -1,0 +1,50 @@
+<div class="settings-page" *ngIf="currentUser">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 form-group">
+                <h1 class="text-xs-center">Settings</h1>
+                <form 
+                    [formGroup]="form" 
+                    (ngSubmit)="onSubmit()"
+                    class="form"
+                >
+                    <label>Image</label>
+                    <input 
+                        type="file"
+                        class="form-control mb-3"
+                        (change)="onFileSelect($event)"
+                    />
+
+                    <label>Username</label>
+                    <input 
+                        type="text"
+                        class="form-control mb-3"
+                        formControlName="username"
+                    />
+
+                    <label>Bio</label>
+                    <input 
+                        type="text"
+                        class="form-control mb-3"
+                        formControlName="bio"
+                    />
+
+                    <label>Email</label>
+                    <input 
+                        type="text"
+                        class="form-control mb-3"
+                        formControlName="email"
+                    />
+
+                    <label>Password</label>
+                    <input 
+                        type="password"
+                        class="form-control mb-3"
+                        formControlName="password"
+                    />
+                    <button class="btn btn-outline-danger">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

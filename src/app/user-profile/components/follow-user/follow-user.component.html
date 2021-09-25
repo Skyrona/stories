@@ -1,0 +1,12 @@
+<button 
+    (click)="handleFollow()"
+    *ngIf="!isSameUserProps" 
+    [ngClass]="{
+        'btn': true, 
+        'btn-sm': true, 
+        'btn-primary': isFollowed,
+        'btn-outline-primary': !isFollowed
+    }"
+>
+    <i class="ion-heart"></i>
+</button>

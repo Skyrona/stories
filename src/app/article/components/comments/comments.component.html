@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-2 col-xs-10">
+            <hr />
+            <p>
+                COMMENTS
+            </p>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+                <textarea formControlName="body" class="form-control mb-2"></textarea>
+                <button type="submit" class="btn btn-outline-secondary btn-sm btn-save">Send</button>
+            </form>
+
+            <br />
+            <div *ngFor="let comment of (comments$ | async)" class="mt-1">
+                <div class="card">
+                    <div class="card-header">
+                        <p>{{ comment.author.username }} has written:</p>
+                        <div class="comment-date">
+                            {{ comment.createdAt | date: "medium" }}
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {{ comment.body }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="article-page">
+    <ng-container *ngIf="(article$ | async) as article">
+
+        <div class="banner">
+            <div class="container-fluid">
+                <h1>{{article.title}}</h1>
+                <div class="article-meta">
+                    <a [routerLink]="['/profiles', article.author.username]">
+                        <img [src]="article.author.image" />
+                    </a>
+                    <div class="info">
+                        <a [routerLink]="['/profiles', article.author.username]">
+                            {{article.author.username}}
+                        </a>
+                        <br />
+                        <span class="date">
+                            {{article.createdAt | date}}
+                        </span>
+                    </div>
+                    <br />
+                    <span *ngIf="(currentUser$ | async)?.username === article.author.username">
+                        <a [routerLink]="['/articles', article.slug, 'edit']" class="btn btn-outline-secondary btn-sm">
+                            <i class="ion-edit"></i>
+                            Edit article
+                        </a>
+                        &nbsp;
+                        <button 
+                            class="btn btn-outline-danger btn-sm" 
+                            (click)="deleteArticle()"
+                        >
+                            Delete article
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="container page">
+        
+            <div class="row article-content mt-5" *ngIf="article">
+                <div class="col-xs-8 offset-2">
+                    <markdown class="markdown" [data]="article.body"></markdown>
+                    <app-tag-list [tags]="article.tagList"></app-tag-list>
+                </div>
+            </div>
+        </div>
+
+        <div class="comments-container">
+
+
+            <app-comments [slug]="slug"></app-comments>
+        </div>
+    </ng-container>
+</div>

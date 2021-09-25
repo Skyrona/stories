@@ -1,0 +1,57 @@
+<!-- <sandbox-loading *ngIf="isLoading$ | async"></sandbox-loading>
+<sandbox-error-message *ngIf="error$ | async"></sandbox-error-message> -->
+
+<div>
+  <div class="article-preview">
+    <div class="article-meta">
+      <div class="pull-xs-right">
+
+      </div>
+    </div>
+  </div>
+  <!-- <sandbox-pagination
+        [total]="(feed$ | async)?.articlesCount"
+        [limit]="limit"
+        [url]="baseUrl"
+        [currentPage]="currentPage"
+    ></sandbox-pagination> -->
+</div>
+
+
+<ng-container *ngIf="(articles$ | async) as articles; else loading">
+    <div *ngFor="let article of articles.articles">
+      <div class="card">
+        <div class="card-header">
+          <div class="profile-info">
+            <img [src]="article.author?.image" class="profile-image"/>
+            <div class="info">
+              <a [routerLink]="['/profiles', article.author.username]" class="author">
+                {{ article.author.username }}
+              </a>
+              <br />
+              <span class="date">{{ article.createdAt | date }}</span>
+            </div>
+          </div>
+          <div class="favorites-button">
+            <app-favorites-button
+              [isFavorited]="article.favorited"
+              [articleSlug]="article.slug"
+              [favoritesCount]="article.favoritesCount"
+            ></app-favorites-button>
+          </div>
+        </div>
+        <div class="card-body">
+          <a [routerLink]="['/articles', article.slug]" >
+            <h1 class="card-title">{{ article.title }}</h1>
+            <p>{{ article.description }}</p>
+            <span class="btn btn-primary">Read more...</span>
+          </a>
+          <!-- <sandbox-tag-list [tags]="article.tagList"></sandbox-tag-list> -->
+        </div>
+      </div>
+    </div>
+</ng-container>
+
+<ng-template #loading>
+    Loading....
+</ng-template>

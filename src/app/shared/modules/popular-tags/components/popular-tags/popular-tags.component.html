@@ -1,0 +1,15 @@
+<div class="sidebar" *ngIf="popularTags$ | async">
+    <p>Popular Tags</p>
+    <div class="tag-list">
+        <a 
+            *ngFor="let popularTag of popularTags$ | async" 
+            [routerLink]="['/tags', popularTag]"
+            class="tag-default tag-pill"
+        >
+            <span class="badge rounded-pill">
+                {{popularTag}}
+            </span>
+            
+        </a>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+.card {
+    margin-top: 3rem;
+}
+
+.card-header {
+    background-color: #ACACDE;
+    // color: #B8336A;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-image {
+    height: 3rem;
+    border-radius: 1.5rem;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: row;
+}
+
